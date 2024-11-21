@@ -6,9 +6,19 @@ My customizations for my developer environment
 
 Runs a customization using lambda-mod theme and some custom functions
 
-## NEOVIM
+## CONFIG
+
+### NEOVIM
 
 Death to the IDE, long live my lua configure terminal text editor!!!
+
+### BTOP
+
+Mostly just a theme to match everything
+
+### Alacritty
+
+Customization for alacritty terminal and matching theme
 
 ## TMUX
 
