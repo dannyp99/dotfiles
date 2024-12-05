@@ -14,7 +14,6 @@ image: docker:latest
 
 before_script:
   - echo "Starting checks for dotfiles...."
-  - apt install -y bash
 
 after_script:
   - echo "Execution completed"
@@ -24,7 +23,7 @@ build:
   script:
     - ls -latr
     - echo "Executing install.sh"
-    - bash install.sh
+    - /bin/bash -n ./install.sh
 
 test1:
   stage: test
