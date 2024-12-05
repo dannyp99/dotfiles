@@ -23,7 +23,7 @@ build:
   script:
     - ls -latr
     - echo "Executing install.sh"
-    - ./install.sh
+    - install.sh
 
 test1:
   stage: test
