@@ -10,7 +10,7 @@
 # See https://docs.gitlab.com/ee/ci/yaml/index.html for all available options
 
 # you can delete this line if you're not using Docker
-image: busybox:latest
+image: docker:latest
 
 before_script:
   - echo "Starting checks for dotfiles...."
@@ -18,7 +18,7 @@ before_script:
 after_script:
   - echo "Execution completed"
 
-build1:
+build:
   stage: build
   script:
     - ls -latr
