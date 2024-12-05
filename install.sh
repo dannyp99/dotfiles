@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 echo "-----------------STARTING: tmux tpm clone-----------------"
 if [[ ! -d "$HOME/.tmux/plugins/tpm" ]]; then
