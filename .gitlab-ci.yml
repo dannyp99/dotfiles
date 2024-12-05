@@ -22,8 +22,9 @@ build:
   stage: build
   script:
     - ls -latr
+    - cat /etc/os-release
     - echo "Executing install.sh"
-    - ./install.sh
+    #    - ./install.sh
 
 test1:
   stage: test
