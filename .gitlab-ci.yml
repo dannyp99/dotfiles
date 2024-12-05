@@ -21,6 +21,7 @@ after_script:
 build1:
   stage: build
   script:
+    - ls -latr
     - echo "Executing install.sh"
     - ./install.sh
 
