@@ -16,7 +16,6 @@ before_script:
   - echo "Starting checks for dotfiles...."
 
 after_script:
-  - if [[ $? -eq 0]]; then exit
   - echo "Execution completed"
 
 build1:
