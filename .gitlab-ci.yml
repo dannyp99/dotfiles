@@ -13,7 +13,8 @@
 image: debian:latest
 
 before_script:
-  - echo "Starting checks for dotfiles...."
+  - echo "Installing dependencies"
+  - apt install git
 
 after_script:
   - echo "Execution completed"
