@@ -23,6 +23,7 @@ build:
   script:
     - ls -latr
     - cat /etc/os-release
+    - which bash
     - echo "Executing install.sh"
     #    - ./install.sh
 
