@@ -15,7 +15,7 @@ image: debian:latest
 before_script:
   - echo "Installing dependencies"
   - apt update
-  - apt install git
+  - apt install -y git
 
 after_script:
   - echo "Execution completed"
