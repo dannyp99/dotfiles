@@ -11,7 +11,11 @@ echo ""
 
 DOT_CONFIG="$HOME/.config"
 echo "-----------------STARTING: .config symlinks-----------------"
-
+if [[ ! -d "$DOT_CONFIG" ]];then
+    echo "Creating .config"
+    mkdir -p "$DOT_CONFIG"
+    ls -ltr "$DOT_CONFIG"
+fi
 if [[ ! -d "$DOT_CONFIG/nvim" ]];then
     ln -sf "$PWD/config/nvim" "$DOT_CONFIG/nvim" && echo "Neovim Symlink Created"
 else
