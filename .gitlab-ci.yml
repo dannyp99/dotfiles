@@ -15,7 +15,7 @@ image: debian:latest
 before_script:
   - echo "Installing dependencies"
   - apt update
-  - apt install -y git
+  - apt install -y git shellcheck
 
 after_script:
   - echo "Execution completed"
@@ -26,20 +26,19 @@ build:
     - ls -latr
     - cat /etc/os-release
     - which bash
+    - shellcheck install.sh
     - echo "Executing install.sh"
     - ./install.sh
 
-test1:
-  stage: test
+verify:
+  stage: verify
   script:
-    - echo "Do a test here"
-    - echo "For example run a test suite"
-
-test2:
-  stage: test
-  script:
-    - echo "Do another parallel test here"
-    - echo "For example run a lint test"
+    - |
+      if [[ -d "$HOME/.config" ]] && [[ -h "$HOME/.cofig/nvim" ]]; then
+        exit 0
+      else
+        exit 1
+      fi
 
 deploy1:
   stage: deploy
