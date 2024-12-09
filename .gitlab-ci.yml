@@ -34,7 +34,8 @@ verify:
   stage: test
   script:
     - |
-      if [[ -d "$HOME/.config" ]] && [[ -h "$HOME/.cofig/nvim" ]]; then
+      install.sh
+      if [[ -d "$HOME/.config" ]] && [[ -L "$HOME/.cofig/nvim" ]]; then
         exit 0
       else
         exit 1
