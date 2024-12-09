@@ -31,7 +31,7 @@ build:
     - ./install.sh
 
 verify:
-  stage: verify
+  stage: test
   script:
     - |
       if [[ -d "$HOME/.config" ]] && [[ -h "$HOME/.cofig/nvim" ]]; then
