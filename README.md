@@ -22,4 +22,4 @@ Customization for alacritty terminal and matching theme
 
 ## TMUX
 
-Simple customization for Tmux theme
+Simple customization for Tmux theme. Mostly just a tpm installation and cattpuccin plugin install
