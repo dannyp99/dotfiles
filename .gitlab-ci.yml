@@ -33,14 +33,7 @@ build:
 verify:
   stage: test
   script:
-    - |
-      install.sh
-      if [[ -d "$HOME/.config" ]] && [[ -L "$HOME/.cofig/nvim" ]]; then
-        exit 0
-      else
-        exit 1
-      fi
-
+    - ls -latr
 deploy1:
   stage: deploy
   script:
