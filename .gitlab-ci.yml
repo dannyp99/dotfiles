@@ -33,9 +33,13 @@ build:
 verify:
   stage: test
   script:
-    - ls -latr
     - ./install.sh
-    - if [[ -d "/root/.config" ]]; then exit 0;fi
+    - |
+      if [[ -d "/root/.config" ]] && [[ -d "root/.config/nvim" ]];then
+        exit 0;
+      else
+        exit 1;
+      fi
 deploy1:
   stage: deploy
   script:
