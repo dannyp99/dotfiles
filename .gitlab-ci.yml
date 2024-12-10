@@ -35,9 +35,7 @@ verify:
   script:
     - ./install.sh
     - |
-      if [[ -d "/root/.config" ]] && [[ -d "root/.config/nvim" ]];then
-        exit 0;
-      else
+      if [[ ! -d "/root/.config" ]] || [[ ! -L "root/.config/nvim" ]];then
         exit 1;
       fi
 deploy1:
