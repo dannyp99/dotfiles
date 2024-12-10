@@ -35,7 +35,7 @@ verify:
   script:
     - ./install.sh
     - ls -la /root/.config
-    - if [[ $(ls -la | wc -l) -ne 5 ]];then exit 127; fi
+    - if [[ ! -L /root/.config/nvim ]];then exit 127; fi
 deploy1:
   stage: deploy
   script:
