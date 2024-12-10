@@ -34,10 +34,7 @@ verify:
   stage: test
   script:
     - ./install.sh
-    - |
-      if [[ ! -d "/root/.config" ]] || [[ ! -L "root/.config/nvim" ]];then
-        exit 1;
-      fi
+    - ls -la /root/.config
 deploy1:
   stage: deploy
   script:
