@@ -29,6 +29,8 @@ build:
     - shellcheck install.sh
     - echo "Executing install.sh"
     - ./install.sh
+    - tar cvzf configs.tar.gz /root/.config
+    - ls -al && pwd
 
 verify:
   stage: test
