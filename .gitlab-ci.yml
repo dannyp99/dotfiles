@@ -29,7 +29,7 @@ build:
     - shellcheck install.sh
     - echo "Executing install.sh"
     - ./install.sh
-    - tar cvzf configs.tar.gz /root/.config
+    - tar cvzf configs.tar.gz -C /root .config
     - ls -al && pwd
   artifacts:
     paths:
