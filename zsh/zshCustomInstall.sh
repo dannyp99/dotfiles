@@ -13,7 +13,7 @@ OS=""
 DISTRO_ID=""
 INSTALL_CMD=""
 RELEASE_FILE=""
-ZSH_DEPENDENCIES=("git" "ripgrep" "bat")
+ZSH_DEPENDENCIES=("curl" "wget" "git" "ripgrep" "bat")
 
 function help_function() {
     echo "--dry-run                                 Set to =0 to ensure commands are actually run and =1 for debugging"
@@ -98,11 +98,11 @@ function get_pkg_mngr() {
     INSTALL_CMD=()
     case "$DISTRO_ID" in
         "debian"|"ubuntu"|"linuxmint")
-            INSTALL_CMD=("apt" "install" "uninstall");;
+            INSTALL_CMD=("apt -y" "install" "uninstall");;
         "fedora"|"rhel"|"amzn")
-            INSTALL_CMD=("dnf" "install" "uninstall");;
+            INSTALL_CMD=("dnf -y" "install" "uninstall");;
         "arch"|"manjaro")
-            INSTALL_CMD=("pacman" "-S" "-Rcns");;
+            INSTALL_CMD=("pacman --no-confirm" "-S" "-Rcns");;
         "nixos")
             INSTALL_CMD=("nix-env" "i" "");; # [[ -z var ]]
         "Other"|*)
