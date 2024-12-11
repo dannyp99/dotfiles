@@ -41,6 +41,7 @@ verify:
     - build
   script:
     - tar xzvf configs.tar.gz -C /root
+    - ls -la /root
     - ls -la /root/.config
     - if [[ ! -L /root/.config/alacritty ]];then exit 127; fi
     - if [[ ! -L /root/.config/btop ]];then exit 127; fi
