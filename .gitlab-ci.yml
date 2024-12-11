@@ -40,7 +40,9 @@ verify:
   dependencies:
     - build
   script:
-    - ./install.sh
+    - mkdir -p /root/.config
+    - ls -la /root/.config
+    - tar xzvf configs.tar.gz -C /root/.config
     - ls -la /root/.config
     - if [[ ! -L /root/.config/alacritty ]];then exit 127; fi
     - if [[ ! -L /root/.config/btop ]];then exit 127; fi
