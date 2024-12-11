@@ -45,7 +45,7 @@ verify:
     - if [[ ! -L /root/.config/alacritty ]];then exit 127; fi
     - if [[ ! -L /root/.config/btop ]];then exit 127; fi
     - if [[ ! -L /root/.config/nvim ]];then exit 127; fi
-    - if [[ ! -L /root/.zshrc]];then exit 127; fi
+    - if [[ ! -L /root/.zshrc ]];then exit 127; fi
 deploy1:
   stage: deploy
   script:
