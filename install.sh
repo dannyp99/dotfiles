@@ -1,9 +1,5 @@
 #!/usr/bin/env bash
 
-echo "-----------------STARTING: zsh custom install-----------------"
-./zsh/zshCustomInstall.sh
-echo "-----------------COMPLETED: zsh custom install-----------------"
-printf "\n"
 echo "-----------------STARTING: tmux tpm clone-----------------"
 if [[ ! -d "$HOME/.tmux/plugins/tpm" ]]; then
     git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
@@ -41,4 +37,7 @@ ln -sf "$PWD/zsh/.zshrc" "$HOME/.zshrc" && echo ".zshrc Symlink Created"
 ln -sf "$PWD/.bashrc" "$HOME/.bashrc" && echo ".bashrc Symlink Created"
 
 echo "-----------------COMPLETED: .config symlinks-----------------"
-
+printf "\n"
+echo "-----------------STARTING: zsh custom install-----------------"
+./zsh/zshCustomInstall.sh
+echo "-----------------COMPLETED: zsh custom install-----------------"
