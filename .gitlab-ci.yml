@@ -29,7 +29,7 @@ build:
     - shellcheck install.sh
     - echo "Executing install.sh"
     - ./install.sh
-    - tar cvzf configs.tar.gz -C /root .config
+    - tar cvzf configs.tar.gz -C /root .config .zshrc
     - ls -al && pwd
   artifacts:
     paths:
@@ -45,6 +45,7 @@ verify:
     - if [[ ! -L /root/.config/alacritty ]];then exit 127; fi
     - if [[ ! -L /root/.config/btop ]];then exit 127; fi
     - if [[ ! -L /root/.config/nvim ]];then exit 127; fi
+    - if [[ ! -L /root/.zshrc]];then exit 127; fi
 deploy1:
   stage: deploy
   script:
