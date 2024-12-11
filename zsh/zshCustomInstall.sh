@@ -98,13 +98,13 @@ function get_pkg_mngr() {
     INSTALL_CMD=()
     case "$DISTRO_ID" in
         "debian"|"ubuntu"|"linuxmint")
-            INSTALL_CMD=("sudo" "apt -y" "install" "uninstall");;
+            INSTALL_CMD=("apt -y" "install" "uninstall");;
         "fedora"|"rhel"|"amzn")
-            INSTALL_CMD=("sudo" "dnf -y" "install" "uninstall");;
+            INSTALL_CMD=("dnf -y" "install" "uninstall");;
         "arch"|"manjaro")
-            INSTALL_CMD=("sudo" "pacman --no-confirm" "-S" "-Rcns");;
+            INSTALL_CMD=("pacman --no-confirm" "-S" "-Rcns");;
         "nixos")
-            INSTALL_CMD=("sudo" "nix-env" "i" "");; # [[ -z var ]]
+            INSTALL_CMD=("nix-env" "i" "");; # [[ -z var ]]
         "Other"|*)
             INSTALL_CMD=()
             echo "Unkown package manager Please enter your package manager install and uninstall commands"
@@ -142,7 +142,7 @@ function handle_install() {
         ((end_idx++))
     fi
     echo "Installing dependencies...."
-    eval "${INSTALL_CMD[*]:0:$end_idx} ${ZSH_DEPENDENCIES[*]}"
+    eval "sudo ${INSTALL_CMD[*]:0:$end_idx} ${ZSH_DEPENDENCIES[*]}"
     if [[ ! -d "$HOME/.fzf/" ]];then
         echo "Install FZF from Source"
         git clone --depth 1 https://github.com/junegunn/fzf.git "$HOME/.fzf"
@@ -153,7 +153,7 @@ function handle_install() {
     if [[ -n $(which zsh) ]];then
         echo "ZSH already installed"
     else
-        eval "${INSTALL_CMD[0]} ${INSTALL_CMD[1]} zsh"
+        eval "sudo ${INSTALL_CMD[0]} ${INSTALL_CMD[1]} zsh"
     fi
 }
 
@@ -197,9 +197,6 @@ else
     else
         echo "MacOS detected using homebrew...."
         INSTALL_CMD=("brew" "install" "uninstall")
-    fi
-    if [[ "$(whoami)" == "root" ]];then
-        INSTALL_CMD=("${INSTALL_CMD[*]:1}")
     fi
     echo "Install Commands are: ${INSTALL_CMD[*]}"
     handle_install
