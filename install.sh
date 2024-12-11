@@ -39,6 +39,6 @@ echo "-----------------COMPLETED: .config symlinks-----------------"
 printf "\n"
 echo "-----------------STARTING: zsh custom install-----------------"
 touch "$HOME/.zshrc"
-./zsh/zshCustomInstall.sh
+./zsh/zshCustomInstall.sh --dry-run=0
 ln -sf "$PWD/zsh/.zshrc" "$HOME/.zshrc" && echo ".zshrc Symlink Created"
 echo "-----------------COMPLETED: zsh custom install-----------------"
