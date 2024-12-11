@@ -98,13 +98,13 @@ function get_pkg_mngr() {
     INSTALL_CMD=()
     case "$DISTRO_ID" in
         "debian"|"ubuntu"|"linuxmint")
-            INSTALL_CMD=("apt -y" "install" "uninstall");;
+            INSTALL_CMD=("sudo" "apt -y" "install" "uninstall");;
         "fedora"|"rhel"|"amzn")
-            INSTALL_CMD=("dnf -y" "install" "uninstall");;
+            INSTALL_CMD=("sudo" "dnf -y" "install" "uninstall");;
         "arch"|"manjaro")
-            INSTALL_CMD=("pacman --no-confirm" "-S" "-Rcns");;
+            INSTALL_CMD=("sudo" "pacman --no-confirm" "-S" "-Rcns");;
         "nixos")
-            INSTALL_CMD=("nix-env" "i" "");; # [[ -z var ]]
+            INSTALL_CMD=("sudo" "nix-env" "i" "");; # [[ -z var ]]
         "Other"|*)
             INSTALL_CMD=()
             echo "Unkown package manager Please enter your package manager install and uninstall commands"
@@ -197,6 +197,9 @@ else
     else
         echo "MacOS detected using homebrew...."
         INSTALL_CMD=("brew" "install" "uninstall")
+    fi
+    if [[ "$(whoami)" == "root" ]];then
+        INSTALL_CMD=("${INSTALL_CMD[*]:1}")
     fi
     echo "Install Commands are: ${INSTALL_CMD[*]}"
     handle_install
