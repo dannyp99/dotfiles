@@ -15,7 +15,7 @@ image: debian:latest
 before_script:
   - echo "Installing dependencies"
   - apt update
-  - apt install -y git shellcheck sudo curl wget
+  - apt install -y git shellcheck sudo curl wget zsh
 
 after_script:
   - echo "Execution completed"

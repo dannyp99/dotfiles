@@ -169,7 +169,6 @@ function handle_plugins() {
         git clone https://github.com/zsh-users/zsh-syntax-highlighting.git "$HOME/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting"
         git clone https://github.com/zsh-users/zsh-autosuggestions.git "$HOME/.oh-my-zsh/custom/plugins/zsh-autosuggestions"
         git clone --depth 1 https://github.com/unixorn/fzf-zsh-plugin.git "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/fzf-zsh-plugin"
-        cp ./zshrc ~/.zshrc
         # Commented out while an existing zsh file is being maintianed
         # sed 's/ZSH_THEME.*/ZSH_THEME="lambda-mod"/g' zshrc_backup | tr "%" "\n" > "$HOME/.zshrc"
         # sed -i 's/plugins=.*/plugins=(git zsh-autosuggestions zsh-syntax-highlighting fzf-zsh-plugin)/' "$HOME/.zshrc"
