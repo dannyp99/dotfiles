@@ -13,7 +13,7 @@ OS=""
 DISTRO_ID=""
 INSTALL_CMD=""
 RELEASE_FILE=""
-ZSH_DEPENDENCIES=("curl" "wget" "git" "ripgrep" "bat")
+ZSH_DEPENDENCIES=("git" "curl" "wget" "git" "ripgrep" "bat")
 
 function help_function() {
     echo "--dry-run                                 Set to =0 to ensure commands are actually run and =1 for debugging"
