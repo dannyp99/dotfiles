@@ -31,9 +31,13 @@ build:
     - ./install.sh
     - tar cvzf configs.tar.gz /root/.config
     - ls -al && pwd
+  artifacts:
+    path: /builds/dannyp44/dotfiles/configs.tar.gz
 
 verify:
   stage: test
+  dependencies:
+    - build
   script:
     - ./install.sh
     - ls -la /root/.config
