@@ -142,7 +142,7 @@ function handle_install() {
         ((end_idx++))
     fi
     echo "Installing dependencies...."
-    eval "sudo ${INSTALL_CMD[*]:0:$end_idx} ${ZSH_DEPENDENCIES[*]}"
+    eval "${INSTALL_CMD[*]:0:$end_idx} ${ZSH_DEPENDENCIES[*]}"
     if [[ ! -d "$HOME/.fzf/" ]];then
         echo "Install FZF from Source"
         git clone --depth 1 https://github.com/junegunn/fzf.git "$HOME/.fzf"
@@ -153,7 +153,7 @@ function handle_install() {
     if [[ -n $(which zsh) ]];then
         echo "ZSH already installed"
     else
-        eval "sudo ${INSTALL_CMD[0]} ${INSTALL_CMD[1]} zsh"
+        eval "${INSTALL_CMD[0]} ${INSTALL_CMD[1]} zsh"
     fi
 }
 
