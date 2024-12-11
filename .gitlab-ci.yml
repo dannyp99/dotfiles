@@ -32,7 +32,8 @@ build:
     - tar cvzf configs.tar.gz /root/.config
     - ls -al && pwd
   artifacts:
-    paths: /builds/dannyp44/dotfiles/configs.tar.gz
+    paths:
+      - /builds/dannyp44/dotfiles/configs.tar.gz
 
 verify:
   stage: test
