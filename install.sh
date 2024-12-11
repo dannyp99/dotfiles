@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 
+echo "-----------------STARTING: zsh custom install-----------------"
+./zsh/zshCustomInstall.sh
+echo "-----------------COMPLETED: zsh custom install-----------------"
+printf "\n"
 echo "-----------------STARTING: tmux tpm clone-----------------"
 if [[ ! -d "$HOME/.tmux/plugins/tpm" ]]; then
     git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
@@ -7,8 +11,7 @@ else
     echo "tpm is alread installed skipping..."
 fi
 echo "-----------------COMPLETED: tmux tpm clone-----------------"
-echo ""
-echo ""
+printf "\n"
 
 DOT_CONFIG="$HOME/.config"
 echo "-----------------STARTING: .config symlinks-----------------"
