@@ -170,13 +170,13 @@ function handle_plugins() {
         git clone https://github.com/zsh-users/zsh-autosuggestions.git "$HOME/.oh-my-zsh/custom/plugins/zsh-autosuggestions"
         git clone --depth 1 https://github.com/unixorn/fzf-zsh-plugin.git "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/fzf-zsh-plugin"
         # Commented out while an existing zsh file is being maintianed
-        # sed 's/ZSH_THEME.*/ZSH_THEME="lambda-mod"/g' zshrc_backup | tr "%" "\n" > "$HOME/.zshrc"
-        # sed -i 's/plugins=.*/plugins=(git zsh-autosuggestions zsh-syntax-highlighting fzf-zsh-plugin)/' "$HOME/.zshrc"
-        # echo "FZF command configs"
-        # echo "export FZF_DEFAULT_COMMAND='rg --files --follow --hidden -g \"!{**/node_modules/*,**/.git/*,**/target/*,**/build/*}\"'" >> "$HOME/.zshrc"
-        # echo "export FZF_DEFAULT_OPTS='--preview \"batcat --style=numbers --color=always {}\" --preview-window right:50%:hidden:wrap --bind ctrl-/:toggle-preview'" >> "$HOME/.zshrc"
-        # echo "export FZF_ALT_C_COMMAND='find -type d \( -path \"**/node_modules\" -prune -o -path \"**/.git\" -prune -o -path \"**/target\" -prune -o -path \"**/build\" \) -o -print'" >> "$HOME/.zshrc"
-        # echo "[ -f ~/.fzf.zsh ] && source ~/.fzf/fzf.zsh" >> "$HOME/.zshrc"
+         sed 's/ZSH_THEME.*/ZSH_THEME="lambda-mod"/g' zshrc_backup | tr "%" "\n" > "$HOME/.zshrc"
+         sed -i 's/plugins=.*/plugins=(git zsh-autosuggestions zsh-syntax-highlighting fzf-zsh-plugin)/' "$HOME/.zshrc"
+         echo "FZF command configs"
+         echo "export FZF_DEFAULT_COMMAND='rg --files --follow --hidden -g \"!{**/node_modules/*,**/.git/*,**/target/*,**/build/*}\"'" >> "$HOME/.zshrc"
+         echo "export FZF_DEFAULT_OPTS='--preview \"batcat --style=numbers --color=always {}\" --preview-window right:50%:hidden:wrap --bind ctrl-/:toggle-preview'" >> "$HOME/.zshrc"
+         echo "export FZF_ALT_C_COMMAND='find -type d \( -path \"**/node_modules\" -prune -o -path \"**/.git\" -prune -o -path \"**/target\" -prune -o -path \"**/build\" \) -o -print'" >> "$HOME/.zshrc"
+         echo "[ -f ~/.fzf.zsh ] && source ~/.fzf/fzf.zsh" >> "$HOME/.zshrc"
     fi
 }
 
