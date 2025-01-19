@@ -33,6 +33,7 @@ function handle_args() {
                 help_function
                 ;;
             --dry-run)
+                DRY_RUN="$2"
                 echo "dry-run set to $DRY_RUN"
                 shift 2
                 ;;
