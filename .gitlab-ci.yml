@@ -47,6 +47,7 @@ verify:
     - if [[ ! -L /root/.config/nvim ]];then exit 127; fi
     - if [[ ! -L /root/.zshrc ]];then exit 127; fi
     - if [[ ! -L /root/.tmux.conf ]];then exit 127; fi
+    - if [[ ! -L /root/.gitconfig ]];then exit 127; fi
 deploy:
   stage: deploy
   script:

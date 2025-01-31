@@ -1,0 +1,21 @@
+# This is Git's per-user configuration file.
+[user]
+	name = dannyp99
+	email = dannypires99@gmail.com
+# Please adapt and uncomment the following lines:
+#	name = Danny Pires
+#	email = dannyp99@Dannys-MacBook-Pro.local
+[filter "lfs"]
+	required = true
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+[pull]
+	rebase = false
+[init]
+	defaultBranch = master
+[credential]
+	credentialStore = gpg
+	helper = /usr/local/share/gcm-core/git-credential-manager
+[credential "https://dev.azure.com"]
+	useHttpPath = true
