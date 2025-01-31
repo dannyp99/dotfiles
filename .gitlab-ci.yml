@@ -25,11 +25,10 @@ build:
   script:
     - ls -latr
     - cat /etc/os-release
-    - which bash
     - shellcheck install.sh
     - echo "Executing install.sh"
     - ./install.sh
-    - tar cvzf configs.tar.gz -C /root .config .zshrc
+    - tar cvzf configs.tar.gz -C /root .config .zshrc .gitconfig .tmux.conf .bashrc
     - ls -al && pwd
   artifacts:
     paths:
