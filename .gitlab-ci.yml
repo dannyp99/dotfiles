@@ -45,6 +45,7 @@ verify:
     - if [[ ! -L /root/.config/alacritty ]];then exit 127; fi
     - if [[ ! -L /root/.config/btop ]];then exit 127; fi
     - if [[ ! -L /root/.config/nvim ]];then exit 127; fi
+    - if [[ ! -L /root/.config/awesome ]];then exit 127; fi
     - if [[ ! -L /root/.zshrc ]];then exit 127; fi
     - if [[ ! -L /root/.tmux.conf ]];then exit 127; fi
     - if [[ ! -L /root/.gitconfig ]];then exit 127; fi

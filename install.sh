@@ -31,6 +31,12 @@ if [[ ! -d "$DOT_CONFIG/btop" ]];then
 else
     echo "Btop Symlink Found Skipping..."
 fi
+
+if [[ ! -d "$DOT_CONFIG/awesome" ]];then
+    ln -sf "$PWD/config/awesome" "$DOT_CONFIG/awesome" && echo "AwesomeWM Symlink Created"
+else
+    echo "AwesomeWM config Found Skipping..."
+fi
 ln -sf "$PWD/.gitconfig" "$HOME/.gitconfig" && echo "Gitconfig Symlink Created"
 ln -sf "$PWD/.tmux.conf" "$HOME/.tmux.conf" && echo "Tmux Symlink Created"
 ln -sf "$PWD/.bashrc" "$HOME/.bashrc" && echo ".bashrc Symlink Created"
