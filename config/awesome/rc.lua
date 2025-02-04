@@ -309,8 +309,11 @@ globalkeys = my_table.join(
         {description = "view previous", group = "tag"}),
 
 
-    awful.key({ modkey, "Control" },            "b",     function () awful.util.spawn("brave") end,
-        {description = "run brave", group = "launcher"}),
+    --awful.key({ modkey, "Control" },            "b",     function () awful.util.spawn("brave") end,
+    --    {description = "run brave", group = "launcher"}), -- arch
+
+    awful.key({ modkey, "Control" },            "b",     function () awful.util.spawn("brave-browser") end,
+        {description = "run brave", group = "launcher"}), --debian
 
     awful.key({ modkey },            "t",     function () awful.util.spawn("xfce4-settings-manager") end,
         {description = "run settings", group = "launcher"}),
@@ -947,7 +950,8 @@ client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_n
 awful.spawn.with_shell("killall udiskie")
 --awful.spawn.with_shell("~/.config/awesome/setbg") -- Wallpaper Manager, Random Wallpaper
 awful.spawn.with_shell("nitrogen --restore") -- Wallpaper Manager, Restore old wallpaper
-awful.spawn.with_shell("picom") -- Compositer
+--awful.spawn.with_shell("picom") -- Compositer -- Arch
+awful.spawn.with_shell("compton") -- Compositer -- Deb
 awful.spawn.with_shell("nm-applet") -- Network Manager
 awful.spawn.with_shell("~/.config/awesome/ifvolumeicon");
 awful.spawn.with_shell("~/.config/awesome/ifclipit");
@@ -957,7 +961,7 @@ awful.spawn.with_shell("~/.config/awesome/ifclipit");
 awful.spawn.with_shell("blueberry-tray") -- Bluetooth Manager
 --awful.spawn.with_shell("killall clipit && clipit") -- Clipboard Manager
 --awful.spawn.with_shell("solaar --window hide") Disabled
---awful.spawn.with_shell("xrandr --auto --output HDMI-1 --mode 1920x1080 --left-of eDP-1") Disabled
+awful.spawn.with_shell("xrandr --auto --output HDMI-1 --mode 2560x1440 --left-of eDP-1 --output eDP-1 --off")
 awful.spawn.with_shell("/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1")
 awful.spawn.with_shell("udiskie -t &")
 awful.spawn.with_shell("unclutter &")

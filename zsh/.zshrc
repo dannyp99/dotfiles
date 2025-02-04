@@ -218,6 +218,6 @@ fpath+=${ZDOTDIR:-~}/.zsh_functions
 export FZF_DEFAULT_COMMAND='rg --files --follow --hidden -g "!{**/node_modules/*,**/.git/*,**/target/*,**/build/*,**/.cargo/*}"'
 export FZF_DEFAULT_OPTS='--preview "batcat --style=numbers --color=always {}" --preview-window right:50%:hidden:wrap --bind ctrl-/:toggle-preview'
 #export FZF_ALT_C_COMMAND='rg --files --follow --hidden -g "!{**/node_modules/*,**/.git,**/target/*,**/build/*}" | find -type d'
-export FZF_ALT_C_COMMAND='rsearch --name "**" --type d --exclude "node_modules,.git,target,build"'
-#export FZF_ALT_C_COMMAND='find -type d \( -path "**/node_modules" -prune -o -path "**/.git" -prune -o -path "**/target" -prune -o -path "**/build" \) -o -print'
+#export FZF_ALT_C_COMMAND='rsearch --name "**" --type d --exclude "node_modules,.git,target,build"'
+export FZF_ALT_C_COMMAND='find -type d \( -path "**/node_modules" -prune -o -path "**/.git" -prune -o -path "**/target" -prune -o -path "**/build" \) -o -print'
 [ -f ~/.fzf.zsh ] && source ~/.fzf/fzf.zsh
