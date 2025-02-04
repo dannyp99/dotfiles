@@ -146,10 +146,10 @@ function almightypush(){
 		git add -A
 		git commit -m "$1"
 		git push origin HEAD
-		if [[ ! -f "$HOME/Downloads/push.mp4" ]];then
-			youtube-dl "https://www.youtube.com/watch?v=aYAhC8zn42E" -o '$HOME/Downloads/push.%(ext)s'
-		fi
-		mpv $HOME/Downloads/push.mp4 --length=3 --really-quiet
+		# if [[ ! -f "$HOME/Downloads/push.mp4" ]];then
+		# 	youtube-dl "https://www.youtube.com/watch?v=aYAhC8zn42E" -o '$HOME/Downloads/push.%(ext)s'
+		# fi
+		# mpv $HOME/Downloads/push.mp4 --length=3 --really-quiet
 	else
 		echo "You need to pass a commit message in quotes \"\" as one argument"
 	fi
