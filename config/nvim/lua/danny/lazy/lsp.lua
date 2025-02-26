@@ -9,6 +9,13 @@ return {
         {"hrsh7th/cmp-nvim-lsp"},
         {"hrsh7th/cmp-buffer"},
         {"saadparwaiz1/cmp_luasnip"},
+        {"onsails/lspkind.nvim"},
+        {
+            "zbirenbaum/copilot-cmp",
+            config = function()
+                require("copilot_cmp").setup()
+            end
+        },
 
         -- Snippets
         {"L3MON4D3/LuaSnip"},
@@ -68,23 +75,56 @@ return {
 
         local cmp = require('cmp')
         local cmp_select = {behavior = cmp.SelectBehavior.Select}
+        local lspkind = require('lspkind')
+        local luasnip = require('luasnip')
+        local check_backspace = function()
+            local col = vim.fn.col(".") - 1
+            return col == 0 or vim.fn.getline("."):sub(col, col):match("%s")
+        end
 
         cmp.setup({
             sources = cmp.config.sources({
-                {name = 'nvim_lsp'},  
-                {name = 'luasnip'},  
+                {name = 'nvim_lsp'},
+                {name = 'luasnip'},
+                {name = 'copilot'}
             }, {
                 {name = 'buffer'},
             }),
+            formatting = {
+                format = lspkind.cmp_format({
+                    mode = 'symbol',
+                    max_width = 50,
+
+                    symbol_map = { Copilot = "" }
+                })
+            },
             mapping = cmp.mapping.preset.insert({
                 ['<C-p>'] = cmp.mapping.select_prev_item(cmp_select),
                 ['<C-n>'] = cmp.mapping.select_next_item(cmp_select),
                 ['<C-y>'] = cmp.mapping.confirm({select = true}),
                 ['<C-Space>'] = cmp.mapping.complete(),
+                ["<Tab>"] = cmp.mapping(function(fallback)
+                    if cmp.visible() then
+                        cmp.select_next_item()
+                    elseif require("copilot.suggestion").is_visible() then
+                        require("copilot.suggestion").accept()
+                    elseif luasnip.expandable() then
+                        luasnip.expand()
+                    elseif luasnip.expand_or_jumpable() then
+                        luasnip.expand_or_jump()
+                    elseif check_backspace() then
+                        fallback()
+                    else
+                        fallback()
+                    end
+                end, {
+                    "i",
+                    "s",
+                }),
             }),
             snippet = {
                 expand = function(args)
-                    require('luasnip').lsp_expand(args.body)
+                    luasnip.lsp_expand(args.body)
                 end,
             },
         })
