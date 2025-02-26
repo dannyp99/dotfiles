@@ -9,6 +9,7 @@ return {
         {"hrsh7th/cmp-nvim-lsp"},
         {"hrsh7th/cmp-buffer"},
         {"saadparwaiz1/cmp_luasnip"},
+        {"onsails/lspkind.nvim"},
 
         -- Snippets
         {"L3MON4D3/LuaSnip"},
@@ -68,14 +69,24 @@ return {
 
         local cmp = require('cmp')
         local cmp_select = {behavior = cmp.SelectBehavior.Select}
+        local lspkind = require('lspkind')
+        local luasnip = require('luasnip')
 
         cmp.setup({
             sources = cmp.config.sources({
-                {name = 'nvim_lsp'},  
-                {name = 'luasnip'},  
+                {name = 'nvim_lsp'},
+                {name = 'luasnip'},
             }, {
                 {name = 'buffer'},
             }),
+            formatting = {
+                format = lspkind.cmp_format({
+                    mode = 'symbol',
+                    maxwidth = 50,
+                    ellipsis_char = '...',
+
+                })
+            },
             mapping = cmp.mapping.preset.insert({
                 ['<C-p>'] = cmp.mapping.select_prev_item(cmp_select),
                 ['<C-n>'] = cmp.mapping.select_next_item(cmp_select),
@@ -84,8 +95,13 @@ return {
             }),
             snippet = {
                 expand = function(args)
-                    require('luasnip').lsp_expand(args.body)
+                    luasnip.lsp_expand(args.body)
                 end,
+            },
+            window = {
+                documentation = {
+                    border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
+                },
             },
         })
     end
