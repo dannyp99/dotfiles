@@ -94,8 +94,8 @@ return {
                 format = lspkind.cmp_format({
                     mode = 'symbol',
                     max_width = 50,
-
-                    symbol_map = { Copilot = "" }
+                    symbol_map = { Copilot = "" },
+                    ellipsis_char = '...'
                 })
             },
             mapping = cmp.mapping.preset.insert({
@@ -126,6 +126,11 @@ return {
                 expand = function(args)
                     luasnip.lsp_expand(args.body)
                 end,
+            },
+            window = {
+                documentation = {
+                    border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
+                },
             },
         })
     end
