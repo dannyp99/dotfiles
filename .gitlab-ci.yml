@@ -28,7 +28,7 @@ build:
     - shellcheck install.sh
     - echo "Executing install.sh"
     - ./install.sh
-    - tar cvzf configs.tar.gz -C /root .config .zshrc .gitconfig .tmux.conf .bashrc
+    - tar cvzf configs.tar.gz -C /root .bashrc .config .gitconfig .zshrc 
     - ls -al && pwd
   artifacts:
     paths:
