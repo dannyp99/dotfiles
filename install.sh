@@ -2,7 +2,7 @@
 
 echo "-----------------STARTING: tmux tpm clone-----------------"
 if [[ ! -d "$HOME/.tmux/plugins/tpm" ]]; then
-    git clone https://github.com/tmux-plugins/tpm "$HOME/.tmux/plugins/tpm"
+    git clone https://github.com/tmux-plugins/tpm "$PWD/config/tmux/plugins/tpm"
 else
     echo "tpm is alread installed skipping..."
 fi
@@ -37,14 +37,33 @@ if [[ ! -d "$DOT_CONFIG/awesome" ]];then
 else
     echo "AwesomeWM config Found Skipping..."
 fi
-ln -sf "$PWD/.gitconfig" "$HOME/.gitconfig" && echo "Gitconfig Symlink Created"
-ln -sf "$PWD/.tmux.conf" "$HOME/.tmux.conf" && echo "Tmux Symlink Created"
-ln -sf "$PWD/.bashrc" "$HOME/.bashrc" && echo ".bashrc Symlink Created"
+
+if [[ ! -d "$DOT_CONFIG/tmux" ]];then
+    ln -sf "$PWD/config/tmux" "$DOT_CONFIG/tmux" && echo "TMUX Symlink Created"
+else
+    echo "TMUX config Found Skipping..."
+fi
+
+if [[ ! -f "$HOME/.gitconfig" ]];then
+    ln -sf "$PWD/.gitconfig" "$HOME/.gitconfig" && echo "Gitconfig Symlink Created"
+else
+    echo ".gitconfig found skipping..."
+fi
+
+if [[ ! -f "$HOME/.bashrc" ]];then
+    ln -sf "$PWD/.bashrc" "$HOME/.bashrc" && echo ".bashrc Symlink Created"
+else
+    echo ".bashrc found skipping..."
+fi
 
 echo "-----------------COMPLETED: .config symlinks-----------------"
 printf "\n"
 echo "-----------------STARTING: zsh custom install-----------------"
-touch "$HOME/.zshrc"
-./zsh/zshCustomInstall.sh --dry-run=0
-ln -sf "$PWD/zsh/.zshrc" "$HOME/.zshrc" && echo ".zshrc Symlink Created"
+if [[ ! -f "$HOME/.zshrc" ]]; then
+    touch "$HOME/.zshrc"
+    ./zsh/zshCustomInstall.sh --dry-run=0
+    ln -sf "$PWD/zsh/.zshrc" "$HOME/.zshrc" && echo ".zshrc Symlink Created"
+else
+    echo ".zshrc already found skipping installation"
+fi
 echo "-----------------COMPLETED: zsh custom install-----------------"
