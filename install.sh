@@ -1,14 +1,5 @@
 #!/usr/bin/env bash
 
-echo "-----------------STARTING: tmux tpm clone-----------------"
-if [[ ! -d "$HOME/.tmux/plugins/tpm" ]]; then
-    git clone https://github.com/tmux-plugins/tpm "$PWD/config/tmux/plugins/tpm"
-else
-    echo "tpm is alread installed skipping..."
-fi
-echo "-----------------COMPLETED: tmux tpm clone-----------------"
-printf "\n"
-
 DOT_CONFIG="$HOME/.config"
 echo "-----------------STARTING: .config symlinks-----------------"
 if [[ ! -d "$DOT_CONFIG" ]];then
@@ -40,6 +31,15 @@ fi
 
 if [[ ! -d "$DOT_CONFIG/tmux" ]];then
     ln -sf "$PWD/config/tmux" "$DOT_CONFIG/tmux" && echo "TMUX Symlink Created"
+    printf "\t-----------------STARTING: tmux tpm clone-----------------\n"
+    if [[ ! -d "$HOME/.config/tmux/plugins/tpm" ]]; then
+        git clone https://github.com/tmux-plugins/tpm "$DOT_CONFIG/tmux/plugins/tpm"
+        git clone -b v2.1.2 https://github.com/catppuccin/tmux.git "$DOT_CONFIG/tmux/plugins/catppuccin/tmux"
+    else
+        echo "tpm is alread installed skipping..."
+    fi
+    printf "\t-----------------COMPLETED: tmux tpm clone-----------------"
+    printf "\n"
 else
     echo "TMUX config Found Skipping..."
 fi
