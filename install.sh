@@ -34,9 +34,9 @@ if [[ ! -d "$DOT_CONFIG/tmux" ]];then
     printf "\t-----------------STARTING: tmux tpm clone-----------------\n"
     if [[ ! -d "$HOME/.config/tmux/plugins/tpm" ]]; then
         git clone https://github.com/tmux-plugins/tpm "$DOT_CONFIG/tmux/plugins/tpm"
-        git clone -b v2.1.2 https://github.com/catppuccin/tmux.git "$DOT_CONFIG/tmux/plugins/catppuccin/tmux"
+        git clone https://github.com/catppuccin/tmux.git "$DOT_CONFIG/tmux/plugins/catppuccin/tmux"
     else
-        echo "tpm is alread installed skipping..."
+        echo "tpm is alread installed skipping plugin setup..."
     fi
     printf "\t-----------------COMPLETED: tmux tpm clone-----------------"
     printf "\n"
