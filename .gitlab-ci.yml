@@ -28,7 +28,7 @@ build:
     - shellcheck install.sh
     - echo "Executing install.sh"
     - ./install.sh
-    - tar cvzf configs.tar.gz -C /root .config .zshrc .gitconfig .tmux.conf .bashrc
+    - tar cvzf configs.tar.gz -C /root .bashrc .config .gitconfig .zshrc 
     - ls -al && pwd
   artifacts:
     paths:
@@ -47,7 +47,7 @@ verify:
     - if [[ ! -L /root/.config/nvim ]];then exit 127; fi
     - if [[ ! -L /root/.config/awesome ]];then exit 127; fi
     - if [[ ! -L /root/.zshrc ]];then exit 127; fi
-    - if [[ ! -L /root/.tmux.conf ]];then exit 127; fi
+    - if [[ ! -L /root/.config/tmux ]];then exit 127; fi
     - if [[ ! -L /root/.gitconfig ]];then exit 127; fi
 deploy:
   stage: deploy
