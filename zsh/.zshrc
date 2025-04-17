@@ -221,3 +221,7 @@ export FZF_DEFAULT_OPTS='--preview "batcat --style=numbers --color=always {}" --
 #export FZF_ALT_C_COMMAND='rsearch --name "**" --type d --exclude "node_modules,.git,target,build"'
 export FZF_ALT_C_COMMAND='find -type d \( -path "**/node_modules" -prune -o -path "**/.git" -prune -o -path "**/target" -prune -o -path "**/build" \) -o -print'
 [ -f ~/.fzf.zsh ] && source ~/.fzf/fzf.zsh
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
