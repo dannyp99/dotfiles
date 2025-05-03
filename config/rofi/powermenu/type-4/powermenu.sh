@@ -11,7 +11,7 @@
 
 # Current Theme
 dir="$HOME/.config/rofi/powermenu/type-4"
-theme='style-5'
+theme='style-3'
 
 # CMDs
 uptime="`uptime -p | sed -e 's/up //g'`"
@@ -73,6 +73,8 @@ run_cmd() {
 				i3-msg exit
 			elif [[ "$DESKTOP_SESSION" == 'plasma' ]]; then
 				qdbus org.kde.ksmserver /KSMServer logout 0 0 0
+            elif [[ "$DESKTOP_SESSION" == 'awesome' ]]; then
+                echo 'awesome.quit()' | awesome-client
 			fi
 		fi
 	else
@@ -94,6 +96,8 @@ case ${chosen} in
 			betterlockscreen -l
 		elif [[ -x '/usr/bin/i3lock' ]]; then
 			i3lock
+        elif [[ -x '/usr/bin/xfce4-screensaver-command' ]]; then
+            xfce4-screensaver-command -a
 		fi
         ;;
     $suspend)
