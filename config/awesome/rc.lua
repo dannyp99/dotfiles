@@ -315,7 +315,7 @@ globalkeys = my_table.join(
     awful.key({ modkey, "Control" },            "b",     function () awful.util.spawn("brave-browser") end,
         {description = "run brave", group = "launcher"}), --debian
 
-    awful.key({ modkey },            "t",     function () awful.util.spawn("xfce4-settings-manager") end,
+    awful.key({ modkey, "Shift" },            "t",     function () awful.util.spawn("xfce4-settings-manager") end,
         {description = "run settings", group = "launcher"}),
    
     awful.key({ modkey, "Shift" },            "c",     function () awful.util.spawn("galculator") end,

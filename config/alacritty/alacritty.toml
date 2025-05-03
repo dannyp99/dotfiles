@@ -44,7 +44,7 @@ blinking = "Always"
 shape = "Underline"
 
 [font]
-size = 10
+size = 9
 
 [font.normal]
 family = "JetbrainsMono Nerd Font"
