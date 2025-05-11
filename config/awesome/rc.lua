@@ -315,7 +315,7 @@ globalkeys = my_table.join(
     awful.key({ modkey, "Control" },            "b",     function () awful.util.spawn("brave-browser") end,
         {description = "run brave", group = "launcher"}), --debian
 
-    awful.key({ modkey },            "t",     function () awful.util.spawn("xfce4-settings-manager") end,
+    awful.key({ modkey, "Shift" },            "t",     function () awful.util.spawn("xfce4-settings-manager") end,
         {description = "run settings", group = "launcher"}),
    
     awful.key({ modkey, "Shift" },            "c",     function () awful.util.spawn("galculator") end,
@@ -516,7 +516,7 @@ globalkeys = my_table.join(
               {description = "reload awesome", group = "hotkeys"}),
     awful.key({ modkey, "Control"   }, "q",  awesome.quit,
               {description = "quit awesome", group = "awesome"}),
-    awful.key({ modkey, "Control"   }, "l",   function () awful.util.spawn("xfce4-screensaver-command -a") end,
+    awful.key({ modkey, "Control"   }, "l",   function () awful.util.spawn("/home/danny/.config/rofi/scripts/powermenu_t4 || xfce4-screensaver-command -a") end,
             {description = "lock screen", group = "awesome"}),
 
     awful.key({ altkey, "Shift"   }, "l",     function () awful.tag.incmwfact( 0.05)          end,

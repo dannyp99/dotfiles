@@ -29,6 +29,12 @@ else
     echo "AwesomeWM config Found Skipping..."
 fi
 
+if [[ ! -d "$DOT_CONFIG/rofi" ]];then
+    ln -sf "$PWD/config/rofi" "$DOT_CONFIG/rofi" && echo "Rofi Symlink Created"
+else
+    echo "Rofi Symlink Found Skipping"
+fi
+
 if [[ ! -d "$DOT_CONFIG/tmux" ]];then
     ln -sf "$PWD/config/tmux" "$DOT_CONFIG/tmux" && echo "TMUX Symlink Created"
     printf "\t-----------------STARTING: tmux tpm clone-----------------\n"
