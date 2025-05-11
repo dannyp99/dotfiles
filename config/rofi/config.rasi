@@ -21,7 +21,7 @@ configuration {
 }
 
 /*****----- Global Properties -----*****/
-@import                          "colors/tokyonight.rasi"
+@import                          "colors/catppuccin.rasi"
 
 * {
     font:                        "JetBrains Mono Nerd Font 10";
