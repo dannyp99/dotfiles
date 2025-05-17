@@ -1,0 +1,7 @@
+#!/usr/bin/env zsh
+
+#set -x
+source ~/.config/hypr/scripts/functions
+cycle_workspace ${@}
+#set =x
+

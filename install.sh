@@ -1,55 +1,36 @@
 #!/usr/bin/env bash
 
 DOT_CONFIG="$HOME/.config"
-echo "-----------------STARTING: .config symlinks-----------------"
+echo "-----------------STARTING: .config dir symlinks-----------------"
 if [[ ! -d "$DOT_CONFIG" ]];then
     echo "Creating .config"
     mkdir "$DOT_CONFIG"
     ls -la "$DOT_CONFIG"
 fi
-if [[ ! -d "$DOT_CONFIG/nvim" ]];then
-    ln -sf "$PWD/config/nvim" "$DOT_CONFIG/nvim" && echo "Neovim Symlink Created"
-else
-    echo "NEOVIM Symlink Found Skipping..."
-fi
-if [[ ! -d "$DOT_CONFIG/alacritty" ]];then
-    ln -sf "$PWD/config/alacritty" "$DOT_CONFIG/alacritty" && echo "Alacritty Symlink Created"
-else
-    echo "Alacritty Symlink Found Skipping..."
-fi
-if [[ ! -d "$DOT_CONFIG/btop" ]];then
-    ln -sf "$PWD/config/btop" "$DOT_CONFIG/btop" && echo "BTOP Symlink Created"
-else
-    echo "Btop Symlink Found Skipping..."
-fi
 
-if [[ ! -d "$DOT_CONFIG/awesome" ]];then
-    ln -sf "$PWD/config/awesome" "$DOT_CONFIG/awesome" && echo "AwesomeWM Symlink Created"
-else
-    echo "AwesomeWM config Found Skipping..."
-fi
-
-if [[ ! -d "$DOT_CONFIG/rofi" ]];then
-    ln -sf "$PWD/config/rofi" "$DOT_CONFIG/rofi" && echo "Rofi Symlink Created"
-else
-    echo "Rofi Symlink Found Skipping"
-fi
-
-if [[ ! -d "$DOT_CONFIG/tmux" ]];then
-    ln -sf "$PWD/config/tmux" "$DOT_CONFIG/tmux" && echo "TMUX Symlink Created"
-    printf "\t-----------------STARTING: tmux tpm clone-----------------\n"
-    if [[ ! -d "$HOME/.config/tmux/plugins/tpm" ]]; then
-        git clone https://github.com/tmux-plugins/tpm "$DOT_CONFIG/tmux/plugins/tpm"
-        git clone https://github.com/catppuccin/tmux.git "$DOT_CONFIG/tmux/plugins/catppuccin/tmux"
-    else
-        echo "tpm is alread installed skipping plugin setup..."
+for CONFIG_DIR in config/*; do
+    IFS='/' read -r -a ITEM_SPLIT <<< "$CONFIG_DIR"
+    ITEM="${ITEM_SPLIT[1]}"
+    if [[ -e "$CONFIG_DIR" ]]; then
+        if [[ ! -d "$DOT_CONFIG/$ITEM" ]]; then
+            ln -sf "$PWD/$CONFIG_DIR" "$DOT_CONFIG/$ITEM" && echo "$ITEM Symlink Created"
+        else
+            echo "$ITEM config found skipping..."
+        fi
     fi
-    printf "\t-----------------COMPLETED: tmux tpm clone-----------------"
-    printf "\n"
+done
+echo "-----------------STARTING: .config dir symlinks-----------------"
+printf "\n"
+echo "-----------------STARTING: tmux tpm clone-----------------"
+if [[ ! -d "$HOME/.config/tmux/plugins/tpm" ]]; then
+    git clone https://github.com/tmux-plugins/tpm "$DOT_CONFIG/tmux/plugins/tpm"
+    git clone https://github.com/catppuccin/tmux.git "$DOT_CONFIG/tmux/plugins/catppuccin/tmux"
 else
-    echo "TMUX config Found Skipping..."
+    echo "tpm is alread installed skipping plugin setup..."
 fi
-
+echo "-----------------COMPLETED: tmux tpm clone-----------------"
+printf "\n"
+echo "-----------------STARTED: config file symlinks-----------------"
 if [[ ! -f "$HOME/.gitconfig" ]];then
     ln -sf "$PWD/.gitconfig" "$HOME/.gitconfig" && echo "Gitconfig Symlink Created"
 else
@@ -62,7 +43,7 @@ else
     echo ".bashrc found skipping..."
 fi
 
-echo "-----------------COMPLETED: .config symlinks-----------------"
+echo "-----------------COMPLETED: config file symlinks-----------------"
 printf "\n"
 echo "-----------------STARTING: zsh custom install-----------------"
 if [[ ! -f "$HOME/.zshrc" ]]; then

@@ -1,0 +1,101 @@
+#!/usr/bin/env zsh
+
+export HYPRLAND_INSTANCE_SIGNATURE=$(hyprctl -j instances | jq -r '.[0] | .instance')
+
+
+
+cycle_workspace () {
+
+    if [[ -n "${@}" ]]; then
+        direction="${1}"
+    else
+        print "Must supply a direction!  Exiting..."  >&2
+        exit 1
+    fi
+
+    monitors=$(hyprctl -j monitors)
+    workspaces=$(hyprctl -j workspaces)
+
+    active_mon=$(hyprctl -j monitors | jq '.[] | select(.focused) | .id')
+    active_ws=$(hyprctl -j monitors | jq --argjson mon ${active_mon} '.[$mon].activeWorkspace.id')
+
+    first_ws=$(jq '.[0].id' <<< "${workspaces}")
+    last_ws=$(jq '.[-1].id' <<< "${workspaces}")
+
+    case "${direction}" in
+        "next")
+            if [[ ${active_ws} -eq ${last_ws} ]]; then
+                hyprctl dispatch workspace ${first_ws}
+            else
+                hyprctl dispatch workspace +1
+            fi
+            ;;
+        "prev")
+            if [[ ${active_ws} -eq ${first_ws} ]]; then
+                hyprctl dispatch workspace ${last_ws}
+            else
+                hyprctl dispatch workspace -1
+            fi
+            ;;
+        *)
+            print "Invalid direction!  Exiting..." >&2
+            exit 2
+            ;;
+    esac
+}
+
+create_workspace () {
+    active_mon=$(hyprctl -j monitors | jq '.[] | select(.focused) | .id')
+    workspaces="$(hyprctl -j workspaces | jq --compact-output .)"
+    first_ws=$(jq '.[0].id' <<< "${workspaces}")
+    last_ws=$(jq '.[-1].id' <<< "${workspaces}")
+
+    if [[ -n "${@}" ]]; then
+        new_name="${1}"
+        shift
+    else
+        print "Must suplly at least a new workspace name!  Exiting..." >&2
+        exit 1
+    fi
+
+    if [[ -n "${@}" ]]; then
+        new_ws="${1}"
+    else
+        new_ws=$(( last_ws + 1 ))
+    fi
+
+    old_ws=$(hyprctl -j activeworkspace | jq '.id')
+    if [[ ${old_ws} -ne ${last_ws} ]]; then
+        hyprctl dispatch workspace ${last_ws}
+    fi 
+    # create new workspace
+    hyprctl dispatch workspace +1
+    active_ws=$(hyprctl -j activeworkspace | jq '.id')
+    hyprctl dispatch renameworkspace ${active_ws} ${new_name}
+    hyprctl keyword workspace "${active_ws},defaultName:${new_name}, monitor:${active_mon}, persistent:true"
+
+    if [[ ${new_ws} -lt ${last_ws} ]]; then
+        for ws in {${new_ws}..${last_ws}}; do
+            curr_name=$(jq --raw-output --argjson ws ${ws} '.[] | select(.id == $ws) | .name' <<< "${workspaces}")
+            if [[ ${new_ws} -eq ${ws} ]]; then
+                next_name=${curr_name}
+            else
+                hyprctl dispatch renameworkspace ${ws} ${next_name}
+                next_name=${curr_name}
+            fi
+        done    
+        last_ws=$(hyprctl -j workspaces | jq '.[-1].id')
+        hyprctl dispatch renameworkspace ${last_ws} ${next_name}
+    fi
+    hyprctl dispatch renameworkspace ${new_ws} ${new_name}
+    active_ws=$(hyprctl -j activeworkspace | jq '.id')
+    hyprctl keyword workspace "${active_ws},defaultName:${next_name}, monitor:${active_mon}, persistent:true"
+
+    #set -x
+    if [[ ${active_ws} -ne ${new_ws} ]]; then
+        hyprctl dispatch workspace ${new_ws}
+        create_workspace ${next_name}
+        hyprctl dispatch workspace ${old_ws}
+    fi
+    #set +x
+}
