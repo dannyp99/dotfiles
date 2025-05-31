@@ -1,8 +1,8 @@
 @import "mocha.css"; 
 
 * {
-    font-family: "MesloLGS Nerd Font Mono Bold";
-    font-size: 16px;
+    font-family: "JetbrainsMono Nerd Font";
+    font-size: 14px;
     min-height: 0;
     font-weight: bold;
 }
@@ -90,9 +90,34 @@ button:hover {
     border-bottom: 2px solid @blue;
 }
 
-#network {
+#backlight {
     color: @yellow;
     border-bottom: 2px solid @yellow;
+}
+
+#network {
+    color: @teal;
+    border-bottom: 2px solid @teal;
+}
+
+#cpu {
+    color: @lavender;
+    border-bottom: 2px solid @lavender;
+}
+
+#memory {
+    color: @peach;
+    border-bottom: 2px solid @peach;
+}
+
+#temperature {
+    color: @sky;
+    border-bottom: 2px solid @sky;
+}
+
+#disk {
+    color: @flamingo;
+    border-bottom: 2px solid @flamingo;
 }
 
 #idle_inhibitor {
