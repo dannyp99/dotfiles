@@ -27,7 +27,7 @@ return {
                     floats = "dark", -- style for floating windows
                 },
             })
-            ColorMyPencils()
+            --ColorMyPencils()
         end
     },
 
@@ -38,6 +38,7 @@ return {
             require('rose-pine').setup({
                 disable_background = true
             })
+            ColorMyPencils("rose-pine")
         end
     },
 }

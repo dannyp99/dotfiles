@@ -46,12 +46,12 @@ return {
             ensure_installed = {'jdtls', 'rust_analyzer'},
             handlers = {
                 function(server_name)
-                    require('lspconfig')[server_name].setup({
+                    vim.lsp.config(server_name).setup({
                         capabilities = lsp_capabilities,
                     })
                 end,
                 lua_ls = function()
-                    require('lspconfig').lua_ls.setup({
+                    vim.lsp.config(lua_ls).setup({
                         capabilities = lsp_capabilities,
                         settings = {
                             Lua = {
