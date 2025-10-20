@@ -121,6 +121,7 @@ alias bat="batcat"
 alias vim=nvim
 alias fzf-edit="fzf --preview 'batcat --style=numbers --color=always {}' | xargs -n 1 nvim"
 alias fd="fdfind"
+alias python="python3"
 
 function mkcd(){
 	mkdir "$1" && cd "$1"
